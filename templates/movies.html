@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Streaming Clone</title>
+    <link rel="stylesheet" href="movies.css">
+</head>
+<body>    
+
+    <!-- <input type="text" placeholder="Search.."> -->
+    <form action="/results" method="GET" id="form">
+        <input type="search" id="query" name="q" placeholder="Search...">
+        <button>Search</button>
+    </form>
+
+    <!-- Section: Trending Now -->
+    <div class="category">
+        <h2>Trending Now</h2>
+        <div class="image-row">
+            <a href="movie?url={{movie1video}}" class="image-item">
+                <img src="{{movie1src}}" alt="{{movie1name}}">
+            </a>
+            <a href="movie?url={{movie2video}}" class="image-item">
+                <img src="{{movie2src}}" alt="{{movie2name}}">
+            </a>
+            <a href="movie?url={{movie3video}}" class="image-item">
+                <img src="{{movie3src}}" alt="{{movie3name}}">
+            </a>
+            <a href="movie?url={{movie4video}}" class="image-item">
+                <img src="{{movie4src}}" alt="{{movie4name}}">
+            </a>
+            <a href="movie?url={{movie5video}}" class="image-item">
+                <img src="{{movie5src}}" alt="{{movie5name}}">
+            </a>
+            <a href="movie?url={{movie6video}}" class="image-item">
+                <img src="{{movie6src}}" alt="{{movie6name}}">
+            </a>
+
+            <!-- <a href="getMovieById?id={{movie1id}}" class="image-item">
+                <img src="{{movie1src}}" alt="{{movie1name}}">
+            </a>
+            <a href="getMovieById?id={{movie2id}}" class="image-item">
+                <img src="{{movie2src}}" alt="{{movie2name}}">
+            </a>
+            <a href="getMovieById?id={{movie3id}}" class="image-item">
+                <img src="{{movie3src}}" alt="{{movie3name}}">
+            </a>
+            <a href="getMovieById?id={{movie4id}}" class="image-item">
+                <img src="{{movie4src}}" alt="{{movie4name}}">
+            </a>
+            <a href="getMovieById?id={{movie5id}}" class="image-item">
+                <img src="{{movie5src}}" alt="{{movie5name}}">
+            </a>
+            <a href="getMovieById?id={{movie6id}}" class="image-item">
+                <img src="{{movie6src}}" alt="{{movie6name}}">
+            </a> -->
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>Popular Videos</h2>
+        <div class="image-row">
+            <a href="movie?url={{movie7video}}" class="image-item">
+                <img src="{{movie7src}}" alt="{{movie7name}}">
+            </a>
+            <a href="movie?url={{movie8video}}" class="image-item">
+                <img src="{{movie8src}}" alt="{{movie8name}}">
+            </a>
+            <a href="movie?url={{movie9video}}" class="image-item">
+                <img src="{{movie9src}}" alt="{{movie9name}}">
+            </a>
+            <a href="movie?url={{movie10video}}" class="image-item">
+                <img src="{{movie10src}}" alt="{{movie10name}}">
+            </a>
+            <a href="movie?url={{movie11video}}" class="image-item">
+                <img src="{{movie11src}}" alt="{{movie11name}}">
+            </a>
+            <a href="movie?url={{movie12video}}" class="image-item">
+                <img src="{{movie12src}}" alt="{{movie12name}}">
+            </a>
+        </div>
+    </div>
+
+    <!-- Section: Top Rated -->
+    <div class="category">
+        <h2>Top Rated</h2>
+        <div class="image-row">
+            <a href="movie?url={{movie13video}}" class="image-item">
+                <img src="{{movie13src}}" alt="{{movie13name}}">
+            </a>
+            <a href="movie?url={{movie14video}}" class="image-item">
+                <img src="{{movie14src}}" alt="{{movie14name}}">
+            </a>
+            <a href="movie?url={{movie15video}}" class="image-item">
+                <img src="{{movie15src}}" alt="{{movie15name}}">
+            </a>
+            <a href="movie?url={{movie16video}}" class="image-item">
+                <img src="{{movie16src}}" alt="{{movie16name}}">
+            </a>
+            <a href="movie?url={{movie17video}}" class="image-item">
+                <img src="{{movie17src}}" alt="{{movie17name}}">
+            </a>
+            <a href="movie?url={{movie18video}}" class="image-item">
+                <img src="{{movie18src}}" alt="{{movie18name}}">
+            </a>
+        </div>
+    </div>
+
+    <!-- Section: Watch it Again -->
+    <div class="category">
+        <h2>Greg's Recommended</h2>
+        <div class="image-row">
+            <a href="movie?url={{movie19video}}" class="image-item">
+                <img src="{{movie19src}}" alt="{{movie19name}}">
+            </a>
+            <a href="movie?url={{movie20video}}" class="image-item">
+                <img src="{{movie20src}}" alt="{{movie20name}}">
+            </a>
+            <a href="movie?url={{movie21video}}" class="image-item">
+                <img src="{{movie21src}}" alt="{{movie21name}}">
+            </a>
+            <a href="movie?url={{movie22video}}" class="image-item">
+                <img src="{{movie22src}}" alt="{{movie22name}}">
+            </a>
+            <a href="movie?url={{movie23video}}" class="image-item">
+                <img src="{{movie23src}}" alt="{{movie23name}}">
+            </a>
+            <a href="movie?url={{movie24video}}" class="image-item">
+                <img src="{{movie24src}}" alt="{{movie24name}}">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
