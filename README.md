@@ -27,6 +27,7 @@ MongoDB: 27017
   "title": String,
   "video": String,
   "vote_average": Number,
-  "vote_count": Integer
+  "vote_count": Integer,
+  "recommended":Boolean
 }
 ```
