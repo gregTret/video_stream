@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -7,13 +8,18 @@
     <title>Video Streaming Clone</title>
     <link rel="stylesheet" href="movies.css">
 </head>
-<body>    
 
-    <!-- <input type="text" placeholder="Search.."> -->
-    <form action="/results" method="GET" id="form">
-        <input type="search" id="query" name="q" placeholder="Search...">
-        <button>Search</button>
-    </form>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchBar" placeholder="Search...">
+            </div>
+        </div>
+    </header>
+    <div id="results-box" class="results-box"></div>
 
     <!-- Section: Trending Now -->
     <div class="category">
@@ -114,4 +120,5 @@
         </div>
     </div>
 </body>
+
 </html>

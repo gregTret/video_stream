@@ -42,8 +42,6 @@ def loadIp():
     except:
         return "Issue in IP Configuration please fix me"
 
-# Get and Store Current IP
-currentIp=loadIp()
 
 # Get movie Details by ID
 @app.route('/getMovieById', methods=['GET'])
@@ -62,6 +60,7 @@ def movie_details():
 @app.route('/movie', methods=['GET'])
 def playMovie():
     try:
+        currentIp=loadIp()
         url=request.args['url']
         return redirect("http://"+currentIp+':5001/'+url)
     except:
@@ -90,13 +89,19 @@ def hello():
 # Main Landing Page population 
 @app.route('/movies')
 def movies():
+    recommended = collection.find({"recommended":True}).sort({"popularity":-1}).limit(20)      
     # getting Most Popular Films
     mostPopular=collection.find().sort({"popularity":-1}).limit(20)
     # Getting Highest Rated Movies
+    
     highestRated=collection.find().sort({"vote_average":-1}).limit(50)
     jsonMerged=[]
+    for i in recommended:
+        if (len(jsonMerged)<15):
+            jsonMerged.append(i)
+
     for i in mostPopular:
-        if (len(jsonMerged)<6):
+        if (len(jsonMerged)<6 and i not in jsonMerged):
             jsonMerged.append(i)
 
     for i in highestRated:
@@ -109,6 +114,20 @@ def movies():
 @app.route('/favicon.ico')
 def fav():
     return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico')
+
+
+@app.route('/searchGeneric',methods=['GET'])
+def searchGeneric():
+    try:
+        query=request.args['q']
+        findQuery={"title":{"$regex" : query,"$options": 'i'}}
+        result=(collection.find(findQuery,{"video":1,"title":1}).sort({"release_date":1}).limit(20))
+        if (result!=None):
+            return json.loads(json_util.dumps(result))
+        else:
+            raise TypeError("Invalid Query")
+    except:
+        return {}
 
 app.run(host='0.0.0.0',debug=True,port=5000)
 
