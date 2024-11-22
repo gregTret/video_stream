@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
@@ -9,11 +8,18 @@
     <link rel="stylesheet" href="movies.css">
 </head>
 
-<body>
+<body>    
     <header>
         <div class="navbar">
             <div class="logo">
+                Video Streaming
             </div>
+
+            <div class="navbar-left">
+                <button onclick="location.href = '/requestFilm';" class="button-31" role="button">Request a film</button>
+                <button class="button-31" role="button">Categories</button>
+            </div>
+
             <div class="search-bar">
                 <input type="text" id="searchBar" placeholder="Search...">
             </div>
@@ -22,7 +28,7 @@
     <div id="results-box" class="results-box"></div>
 
     <!-- Section: Trending Now -->
-    <div class="category">
+    <div style="margin-top:75px" class="category">
         <h2>Trending Now</h2>
         <div class="image-row">
             <a href="movie?url={{movie1video}}" class="image-item">
@@ -120,5 +126,5 @@
         </div>
     </div>
 </body>
-
 </html>
+<script src="movies.js"></script>

@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #111;
+    background-color: #141414;
     color: white;
     margin: 0;
     position: relative;
@@ -16,7 +16,7 @@ body {
 .results-box {
     position: absolute;
     float: right;
-    top: 10px;
+    top: -20px;
     right: 20px;
     width: 300px;
     background-color: #333;
@@ -40,10 +40,9 @@ body {
     background-color: #555;
 }
 
-
 /* Navbar */
 header {
-    margin-top: 20px;
+    margin-top: 0px;
     position: fixed;
     width: 100%;
     background-color: #111;
@@ -61,6 +60,10 @@ header {
 
 .navbar .logo img {
     width: 100px;
+}
+
+.logo {
+    flex: 1;
 }
 
 .search-bar input {
@@ -115,4 +118,115 @@ h2 {
 
 .image-item:active {
     transform: scale(1);
+}
+
+/* Button Styling */
+.button-31 {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-31:hover {
+    background-color: #f40612;
+}
+
+.navbar-left {
+    justify-content: flex-start;
+    gap: 8px;
+    margin-right: 5px;
+}
+
+/* Dropdown Menu Styling */
+.dropdown {
+    position: relative;
+    z-index: 20;
+}
+
+.dropdown-menu {
+    display: none;
+    /* Hide the dropdown menu by default */
+    position: absolute;
+    top: 100%;
+    /* Position it directly below the "Sign In" button */
+    left: 0;
+    background-color: #141414;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    min-width: 160px;
+    z-index: 30;
+}
+
+.dropdown-menu a {
+    color: white;
+    padding: 10px 16px;
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #333;
+}
+
+/* Show the dropdown when hovering over the parent button */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .logo {
+        text-align: center;
+        margin: auto;
+        font-size: 18px;
+    }
+
+    .navbar-left {
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+        text-align: center;
+        margin: auto;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-right: 0px;
+    }
+
+    .navbar-left .button-31 {
+        width: auto;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin: auto;
+    }
+
+    .search-bar {
+        margin: auto;
+        GrogFlix
+
+        /* Hide the dropdown menu on small screens by default */
+        .dropdown-menu {
+            display: none;
+            position: relative;
+            width: 100%;
+            top: 0;
+            z-index: 30;
+        }
+
+        /* Show the dropdown menu when "Sign In" button is focused or clicked */
+        .dropdown:focus-within .dropdown-menu {
+            display: flex;
+        }
+    }
 }

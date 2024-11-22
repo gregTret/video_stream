@@ -1,3 +1,2 @@
 #!/bin/sh
-cd /home/nbgt/files/simple_flask
-python3 server.py
+runuser -l nbgt -c 'files/simple_flask/helper.sh'
