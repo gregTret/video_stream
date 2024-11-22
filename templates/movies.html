@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Streaming Clone</title>
+    <title>GROGFLIX</title>
     <link rel="stylesheet" href="movies.css">
 </head>
 
@@ -12,12 +12,20 @@
     <header>
         <div class="navbar">
             <div class="logo">
-                Video Streaming
+                GROGFLIX
             </div>
 
             <div class="navbar-left">
                 <button onclick="location.href = '/requestFilm';" class="button-31" role="button">Request a film</button>
                 <button class="button-31" role="button">Categories</button>
+                <!-- <div class="dropdown">
+                    <button class="button-31" role="button">Categories</button>
+                    <div class="dropdown-menu">
+                        <a href="#">Drama</a>
+                        <a href="#">Comedy</a>
+                        <a href="#">Special ones</a>
+                    </div>
+                </div> -->
             </div>
 
             <div class="search-bar">
@@ -26,6 +34,12 @@
         </div>
     </header>
     <div id="results-box" class="results-box"></div>
+
+    <!-- <input type="text" placeholder="Search..">
+    <form action="/results" method="GET" id="form">
+        <input type="search" id="query" name="q" placeholder="Search...">
+        <button>Search</button>
+    </form> -->
 
     <!-- Section: Trending Now -->
     <div style="margin-top:75px" class="category">
@@ -52,8 +66,9 @@
         </div>
     </div>
 
+    <!-- Section: Popular on GROGFLIX -->
     <div class="category">
-        <h2>Popular Videos</h2>
+        <h2>Popular on GrogFlix</h2>
         <div class="image-row">
             <a href="movie?url={{movie7video}}" class="image-item">
                 <img src="{{movie7src}}" alt="{{movie7name}}">

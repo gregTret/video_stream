@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Return to Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .return-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #444;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .return-btn:hover {
+            background-color: #666;
+        }
+
+        .form-container {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <button class="return-btn" onclick="returnToHome()">Return to Home</button>
+
+        <div class="form-container">
+            <h2>Request a film</h2>
+            <form id="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Film Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <input type="text" id="message" name="message">
+                </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+<script>
+    // Handle form submission with JavaScript
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        name=document.getElementById("name").value
+        message=document.getElementById("message").value
+
+        fetch("/requestForm", {
+            method: "POST",
+            headers: { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "name":name,
+                "message":message
+            })
+        }).then((response) => response.json())
+            .then((data) => {
+                window.location.href = '/movies';
+            })
+    }
+        function returnToHome() {
+            window.location.href = '/movies';
+        }
+    </script>
+</body>
+</html>

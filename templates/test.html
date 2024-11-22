@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Dashboard</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 32px;
+        }
+        table {
+            width: 80%;
+            margin: 50px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+        th, td {
+            padding: 12px 20px;
+            border: 1px solid #444;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+        }
+        td {
+            background-color: #222;
+        }
+        tr:nth-child(even) td {
+            background-color: #333;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .inactive {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>    Dashboard</h1>
+
+    <table id="jsonTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Message</th>
+                <th>Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Hardcoded JSON data
+
+        fetch("/getDashboard", {
+        }).then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                const jsonData = data
+                renderTable(jsonData);
+            })
+        // const jsonData = [
+        //     // {{docs}}
+        //     // { "Name": "John Doe", "Message": "Hello, this is a message.", "Status": "active" },
+        //     // { "Name": "Jane Smith", "Message": "This is another message.", "Status": "inactive" },
+        //     // { "Name": "Alex Johnson", "Message": "Last message here.", "Status": "active" }
+        // ];
+
+        // Function to render JSON data in the table
+        function renderTable(data) {
+            const tableBody = document.getElementById('jsonTable').getElementsByTagName('tbody')[0];
+            
+            // Clear the table body before adding new rows
+            tableBody.innerHTML = '';
+            
+            // Loop through the JSON data and create table rows
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                
+                const nameCell = document.createElement('td');
+                nameCell.textContent = item.Name;
+                row.appendChild(nameCell);
+                
+                const messageCell = document.createElement('td');
+                messageCell.textContent = item.Message;
+                row.appendChild(messageCell);
+                
+                const statusCell = document.createElement('td');
+                const statusSpan = document.createElement('span');
+                statusSpan.classList.add('status');
+                statusSpan.classList.add(item.Status);
+                statusSpan.textContent = item.Status.charAt(0).toUpperCase() + item.Status.slice(1);
+                statusCell.appendChild(statusSpan);
+                row.appendChild(statusCell);
+                
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Render the table with the hardcoded JSON data
+   
+    </script>
+
+</body>
+</html>

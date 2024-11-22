@@ -1,0 +1,5 @@
+/getFilmInfo/*
+/static/movies/*
+configuration
+__pycache__/*
+/logs/*
