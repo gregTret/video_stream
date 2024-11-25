@@ -31,3 +31,9 @@ MongoDB: 27017
   "recommended":Boolean
 }
 ```
+
+Todo List
+- Add search by category
+- Fix search bar CSS on mobile + create search result page
+- Create a dashboard for viewing submitted requests
+

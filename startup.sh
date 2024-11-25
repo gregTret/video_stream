@@ -1,2 +1,2 @@
 #!/bin/sh
-runuser -l nbgt -c 'files/simple_flask/helper.sh'
+runuser -l nbgt -c 'files/files/gits/video_stream/helper.sh'
