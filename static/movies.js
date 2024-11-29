@@ -35,3 +35,7 @@ function goToResultsPage() {
     const query = searchInput.value.toLowerCase().trim();
     window.location.replace('/searchResults?q=' + query);
 }
+
+function home() {
+    window.location.replace('/movies');
+}

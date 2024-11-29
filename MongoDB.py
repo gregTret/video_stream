@@ -46,9 +46,24 @@ class MongoDB:
     
     # Dashboard Updates
     def getRequests(self):
-        return(self.requestsCollection.find({"status":"Created"}).limit(100))
+        return(self.requestsCollection.find({"status":{'$in':["Created","In Progress"]}}).limit(100))
 
-    
-    def updateRequestStatus(self,id,newStatus):
-        self.requestsCollection.find({"_id":ObjectId("673cff60b6d6eb53cfd86a03")})
-        return {}
+    def updateRequestStatus(self,request):
+        try:
+            id=(request['_id']['$oid'])
+            try:
+                item=self.requestsCollection.find_one({"_id":ObjectId(id)})
+                if (item['status']=="Created"):
+                    self.requestsCollection.find_one_and_update({"_id":ObjectId(id)},{'$set':{'status':'In Progress'}})
+                    return {"status":200,"message":"Moved to 'In Progress'"}
+                elif (item['status']=="In Progress"):
+                    self.requestsCollection.find_one_and_update({"_id":ObjectId(id)},{'$set':{'status':'Completed'}})
+                    return {"status":200,"message":"Moved to 'Completed'"}
+                elif (item['status']=="Completed"):
+                    return {"status":200,"message":"Its already completed tf you want to do with this???'"}
+                else:
+                    return {"status":500,"message":"Unrecognized Status"}
+            except:
+                return {"status":404,"message":"Error in handling Request"}
+        except:
+            return {"status":400,"message":"Failed to parse json token"}

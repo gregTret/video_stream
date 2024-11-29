@@ -87,6 +87,11 @@ def getDashboard():
     docs=db.getRequests()
     return json.loads(json_util.dumps(docs))
 
+@app.route('/updateRequest',methods=['POST'])
+def updateRequest():
+    content = request.get_json(silent=True)
+    response=db.updateRequestStatus(content)
+    return response
 
 # @app.route('/sheets')
 # def loadSheets():
