@@ -65,15 +65,27 @@ def searchGeneric():
     except:
         return {}
 
+@app.route('/searchResults',methods=['GET'])
+def forceMainPage():
+    try:
+        query=request.args['q']
+        if (query==""):
+            raise Exception("Empty search going back to movies")
+        result=db.movie_search_screen(query)
+        vars=helper.getMostPopular(result)
+        return render_template('movies.html',**vars)
+    except:
+        return redirect("/movies")
+
 
 # @app.route('/test')
 # def test():
 #     return render_template('test.html')
 
-# @app.route('/getDashboard')
-# def getDashboard():
-#     docs=requestsCollection.find()
-#     return json.loads(json_util.dumps(docs))
+@app.route('/dashboard')
+def getDashboard():
+    docs=db.getRequests()
+    return json.loads(json_util.dumps(docs))
 
 
 # @app.route('/sheets')

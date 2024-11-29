@@ -23,7 +23,7 @@
         }
 
         .return-btn {
-            position: absolute;
+            position: fixed;
             top: 20px;
             left: 20px;
             background-color: #444;
@@ -102,9 +102,11 @@
 </head>
 
 <body>
+    <!-- class="return-btn" -->
+        <button onclick="returnToHome()">Return to Home</button>
+        <button  onclick="goToDashboard()">Dashboard</button>
 
     <div class="container">
-        <button class="return-btn" onclick="returnToHome()">Return to Home</button>
 
         <div class="form-container">
             <h2>Request a film</h2>
@@ -146,6 +148,9 @@
     }
         function returnToHome() {
             window.location.href = '/movies';
+        }
+        function goToDashboard() {
+            window.location.href = '/dashboard';
         }
     </script>
 </body>

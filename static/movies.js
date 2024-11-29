@@ -3,6 +3,12 @@ const searchInput = document.getElementById('searchBar');
 const resultsBox = document.getElementById('results-box');
 
 
+searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        goToResultsPage();
+    }
+})
+
 searchInput.addEventListener('input', async () => {
     const query = searchInput.value.toLowerCase().trim();
     // If input is empty, hide results
@@ -23,3 +29,9 @@ searchInput.addEventListener('input', async () => {
             })
     }
 });
+
+
+function goToResultsPage() {
+    const query = searchInput.value.toLowerCase().trim();
+    window.location.replace('/searchResults?q=' + query);
+}
