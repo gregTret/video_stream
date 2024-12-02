@@ -30,28 +30,43 @@ def playMovie():
 # Default Route Redirect
 @app.route('/')
 def hello():
-    return redirect("/movies")
+    try:
+        return redirect("/movies")
+    except:
+        return {"status":500,"message":"Internal Server Error - Failed to redirect"}
 
 # Main Landing Page population 
 @app.route('/movies')
 def movies():
-    jsonMerged=db.construct_main_page()
-    vars=helper.getMostPopular(jsonMerged)
-    return render_template('movies.html',**vars)
+    try:
+        jsonMerged=db.construct_main_page()
+        vars=helper.getMostPopular(jsonMerged)
+        return render_template('movies.html',**vars)
+    except:
+        return {"status":500,"message":"Internal Server Error - DB Down"}
 
 @app.route('/favicon.ico')
 def fav():
-    return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico')
-
+    try:
+        return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico')
+    except:
+        return {"status":500,"message":"Internal Server Error - Failed to load favicon"}
+    
 @app.route('/requestFilm')
 def requestLoadPage():
-    return render_template('request.html')
+    try:
+        return render_template('request.html')
+    except:
+        return {"status":500,"message":"Internal Server Error - Failed to render template request.html"}
 
 @app.route('/requestForm',methods=['POST'])
 def saveUserQuery():
-    content = request.get_json(silent=True)
-    db.handle_movie_requests(content)
-    return {}
+    try:
+        content = request.get_json(silent=True)
+        db.handle_movie_requests(content)
+        return {}
+    except:
+        return {"status":500,"message":"Internal Server Error - Failed to save request"}
 
 @app.route('/searchGeneric',methods=['GET'])
 def searchGeneric():
@@ -77,30 +92,22 @@ def forceMainPage():
     except:
         return redirect("/movies")
 
-
-# @app.route('/test')
-# def test():
-#     return render_template('test.html')
-
 @app.route('/dashboard')
 def getDashboard():
-    docs=db.getRequests()
-    return json.loads(json_util.dumps(docs))
+    try:
+        docs=db.getRequests()
+        return json.loads(json_util.dumps(docs))
+    except:
+        return {"status":500,"message":"Internal Server Error - DB Down"}
 
 @app.route('/updateRequest',methods=['POST'])
 def updateRequest():
-    content = request.get_json(silent=True)
-    response=db.updateRequestStatus(content)
-    return response
-
-# @app.route('/sheets')
-# def loadSheets():
-#     return render_template('sheets.html')
-
-# @app.route('/loadSheets')
-# def getExpenses():
-#     docs=expensesCollection.find()
-#     return json.loads(json_util.dumps(docs))
+    try:
+        content = request.get_json(silent=True)
+        response=db.updateRequestStatus(content)
+        return response
+    except:
+        return {"status":500,"message":"Internal Server Error - DB Down"}
 
 app.run(host='0.0.0.0',debug=True,port=5000)
 

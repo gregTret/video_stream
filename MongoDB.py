@@ -60,7 +60,7 @@ class MongoDB:
                     self.requestsCollection.find_one_and_update({"_id":ObjectId(id)},{'$set':{'status':'Completed'}})
                     return {"status":200,"message":"Moved to 'Completed'"}
                 elif (item['status']=="Completed"):
-                    return {"status":200,"message":"Its already completed tf you want to do with this???'"}
+                    return {"status":501,"message":"This request has already been completed'"}
                 else:
                     return {"status":500,"message":"Unrecognized Status"}
             except:
