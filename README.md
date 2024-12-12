@@ -35,5 +35,4 @@ MongoDB: 27017
 Todo List
 - Add search by category
 - Fix search bar CSS on mobile + create search result page
-- Create a dashboard for viewing submitted requests
-
+- Clean up server.py

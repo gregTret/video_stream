@@ -91,6 +91,13 @@ def forceMainPage():
         return render_template('movies.html',**vars)
     except:
         return redirect("/movies")
+    
+@app.route('/dashboardPage')
+def loadDashboard():
+    try:
+        return render_template('dashboard.html')
+    except:
+        return {"status":500,"message":"Internal Server Error - DB Down"}
 
 @app.route('/dashboard')
 def getDashboard():
